@@ -11,6 +11,7 @@ const App=()=> {
   const webcamRef = useRef(null);
   const capture = useRef(null);
   const [loading ,setLoading] = useState(true);
+  const [detectionMap, setDetectionMap] = useState({});
 
      useEffect(()=>{
        starPrediction();
@@ -38,7 +39,7 @@ const App=()=> {
          const videoheight = video.videoHeight;
 
          canvasRef.current.width = videowidth;
-          canvasRef.current.height = videoheight;
+         canvasRef.current.height = videoheight;
 
           const prediction = await model.detect(video);
 
@@ -54,7 +55,7 @@ const App=()=> {
     prediction.forEach((prediction) =>{
       const [x,y,width,height] = prediction.bbox;
       const text = prediction.class;
-
+      handalDetectionMap(text);
       ctx.strokeStyle = "green";
       ctx.font="18px Arial";
       ctx.fillStyle = "green";
@@ -64,6 +65,26 @@ const App=()=> {
       // console.log(prediction);
     });
   };
+
+  const handalDetectionMap =  (detection)=>{
+    let obj = {...(detectionMap || {})};
+    if (detectionMap?. [detection]){
+      obj[detection] ++;
+      //increse the count
+    }else{
+      obj[detection] = 1;
+    }
+    setDetectionMap(obj);
+
+    if(obj?.['person'] > 1){
+      alert('Another person detected ');
+    };
+     
+    if(detection==='cell phone'){
+      alert('Another cell phone detected ');
+    }
+  };
+
 
   return (<div className="parentContainer">
     <h1 className='appTitle'>Real time object detection</h1>
