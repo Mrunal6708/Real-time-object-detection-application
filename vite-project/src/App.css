@@ -1,0 +1,49 @@
+body{
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  background-color: brown;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  font-family: "segoe ui", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+}
+
+.parentContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+
+
+.appTitle{
+  font-size: 2.8rem;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+ }
+  .videoWrapper{
+    position: relative;
+    width: 545px;
+    height: 410px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    overflow: hidden; 
+    background-color: #fff;
+  }
+  video,canvas{
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 545px;
+    height: 410px;
+  }
+}
+
